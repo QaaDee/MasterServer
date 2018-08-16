@@ -1,0 +1,20 @@
+{
+  "name": "qade/master-server",
+  "description": "Master Server to GoldSrc and Source engine",
+  "homepage": "https://github.com/QaaDee/MasterServer",
+  "license": "MIT",
+  "keywords": ["Master", "Server", "GoldSrc", "Source"],
+  "authors": [
+    {
+      "name": "QaaDee",
+      "email": "user.qade@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "ext-sockets": ">=4.3.0"
+  },
+  "autoload": {
+    "classmap": ["src"]
+  }
+}
