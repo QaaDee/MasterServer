@@ -19,17 +19,17 @@ class MasterServer
     /**
      * Bit for add server to server list.
      */
-    private const SERVER_ADD = "\x71";
+    const SERVER_ADD = "\x71";
 
     /**
      * Bit for remove server of server list.
      */
-    private const SERVER_SHOUT_DOWN = "\x62\x0a";
+    const SERVER_SHOUT_DOWN = "\x62\x0a";
 
     /**
      * Bit to get the list of servers from the Master server.
      */
-    private const SERVERS_GET = "\x31";
+    const SERVERS_GET = "\x31";
 
     /**
      * @var array
@@ -67,7 +67,7 @@ class MasterServer
      *
      * @throws MasterServerException
      */
-    final public function __construct(bool $isAllowServerAdd = true, int $returnCountServers = 10, int $gameId = 0)
+    public function __construct($isAllowServerAdd = true, $returnCountServers = 10, $gameId = 0)
     {
         $this->isAllowServerAdd = $isAllowServerAdd;
 
@@ -88,7 +88,7 @@ class MasterServer
      *
      * @throws MasterServerException
      */
-    final public function create(string $address, int $port = 27010)
+    public function create($address, $port = 27010)
     {
         if ($this->socket) {
             throw new MasterServerException('The server has already been created earlier.');
@@ -122,7 +122,7 @@ class MasterServer
     /**
      * Close server.
      */
-    final public function close()
+    public function close()
     {
         if ($this->socket) {
             socket_close($this->socket);
@@ -137,7 +137,7 @@ class MasterServer
      *
      * @return MasterServerClient | null
      */
-    final protected function read(int $len = 4096)
+    protected function read($len = 4096)
     {
         if (!@socket_recvfrom($this->socket, $buffer, $len, MSG_PEEK / 64, $address, $port)) {
             return null;
@@ -153,7 +153,7 @@ class MasterServer
      * @param int $port
      * @param string $message
      */
-    final protected function send(string $address, int $port, string $message)
+    protected function send($address, $port, $message)
     {
         socket_sendto($this->socket, $message, strlen($message), 0, $address, $port);
     }
@@ -168,7 +168,7 @@ class MasterServer
      *
      * @return bool
      */
-    protected function beforeProcessing(MasterServerClient $client): bool
+    protected function beforeProcessing(MasterServerClient $client)
     {
         return true;
     }
@@ -180,7 +180,7 @@ class MasterServer
      *
      * @return void
      */
-    protected function requestUnprocessed(MasterServerClient $client): void
+    protected function requestUnprocessed(MasterServerClient $client)
     {
 
     }
@@ -188,7 +188,7 @@ class MasterServer
     /**
      * Accepts the request from the client and processes it.
      */
-    final public function listen()
+    public function listen()
     {
         $client = $this->read();
 
@@ -240,7 +240,7 @@ class MasterServer
      *
      * @return MasterServer
      */
-    final public function addServer(string $server): MasterServer
+    public function addServer($server)
     {
         $server = trim($server);
 
@@ -263,7 +263,7 @@ class MasterServer
      *
      * @return MasterServer
      */
-    final public function addServers(array $servers): MasterServer
+    public function addServers($servers)
     {
         foreach ($servers as $server) {
             $this->addServer($server);
@@ -275,7 +275,7 @@ class MasterServer
     /**
      * Cleaning the server list.
      */
-    final public function clearServers()
+    public function clearServers()
     {
         $this->servers = [];
     }
@@ -285,7 +285,7 @@ class MasterServer
      *
      * @param string $server
      */
-    final public function removeServer(string $server)
+    public function removeServer($server)
     {
         if (array_key_exists($server, $this->servers)) {
             unset($this->servers[$server]);
@@ -299,7 +299,7 @@ class MasterServer
      *
      * @return array
      */
-    final protected function getServers(string $lastServer): array
+    protected function getServers($lastServer)
     {
         $key = -1;
 

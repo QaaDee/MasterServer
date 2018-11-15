@@ -11,7 +11,7 @@ namespace QaaDee\MasterServer;
  *
  * @package QaaDee\MasterServer
  */
-final class MasterServerClient
+class MasterServerClient
 {
     /**
      * @var string
@@ -35,7 +35,7 @@ final class MasterServerClient
      * @param int $port
      * @param string $buffer
      */
-    public function __construct(string $address, int $port, string $buffer)
+    public function __construct($address, $port, $buffer)
     {
         $this->address = $address;
         $this->port = $port;

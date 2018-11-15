@@ -2,7 +2,7 @@
 This class was created to make a Master Server for the game engine to GoldSrc and Source.
 
 ## Prerequisites
-* PHP version (7.1 or newer)
+* PHP version (5.4 or newer)
 * Lib php_sockets (4.3 or newer)
 * Server must allow UDP connections
 

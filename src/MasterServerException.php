@@ -13,7 +13,7 @@ namespace QaaDee\MasterServer;
  *
  * @uses \Exception
  */
-final class MasterServerException extends \Exception
+class MasterServerException extends \Exception
 {
 
 }
