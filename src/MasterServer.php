@@ -70,6 +70,7 @@ class MasterServer
     public function __construct($isAllowServerAdd = true, $returnCountServers = 10, $gameId = 0)
     {
         $this->isAllowServerAdd = $isAllowServerAdd;
+        $this->returnCountServers = $returnCountServers;
 
         if ($this->returnCountServers < 1 && $this->returnCountServers > 677) {
             throw new MasterServerException('The number of servers returned should not be less than 1 and more than 677');
